@@ -4,7 +4,7 @@ This project implements a sophisticated real-time facial analysis tool using Med
 This code demonstrates a real-time web application that utilizes **MediaPipe Face Landmarker** to track facial features, perform liveness detection, and render both a 2D masked face and a 3D head-orientation cube.
 
 ---
-## ## Key Features
+## Key Features
 
 * **Real-time Face Mesh:** Tracks 468+ facial landmarks using the GPU-accelerated MediaPipe model.
 * **Dynamic Face Masking:** Uses the `Face Oval` landmarks to create a clipping path, extracting the user's face from the background in real-time.
@@ -12,16 +12,16 @@ This code demonstrates a real-time web application that utilizes **MediaPipe Fac
 * **Liveness Verification:** Integrated `LivenessDetector` to prevent spoofing by requiring user interaction (blinks/nods) within a session timeout.
 * **Three.js Integration:** Includes a `FaceMeshSkinRenderer` for mapping video textures onto 3D face geometries.
 
-## ## Project Structure
+## Project Structure
 
 * `index.html`: The main entry point containing the UI layout and core detection logic.
 * `LivenessDetector.js`: Logic for validating user movement and blink patterns.
 * `FaceMeshSkinRenderer1.js`: Handles the 3D rendering of the face mesh using Three.js.
 * `three.module.min.js`: The 3D engine used for the orientation visualization.
 
-## ## Technical Implementation
+## Technical Implementation
 
-### ### 1. Face Masking (The "Clipping" Technique)
+### 1. Face Masking (The "Clipping" Technique)
 
 The `drawMaskedFace` function isolates the face by:
 
@@ -29,7 +29,7 @@ The `drawMaskedFace` function isolates the face by:
 2. Creating a 2D Canvas path based on those coordinates.
 3. Using `ctx.clip()` to ensure only the video pixels within the face boundary are drawn.
 
-### ### 2. 3D Orientation Logic
+### 2. 3D Orientation Logic
 
 The script calculates a local coordinate system ( axes) relative to the face:
 
@@ -39,7 +39,7 @@ The script calculates a local coordinate system ( axes) relative to the face:
 
 This allows the "Nose Cube" to rotate perfectly with the user's head movements.
 
-### ### 3. Liveness State Machine
+### 3. Liveness State Machine
 
 The system tracks the session state:
 
@@ -47,7 +47,7 @@ The system tracks the session state:
 * **Verified:** Green "✅ Verified" status appearing after successful blinks/nods.
 * **Rejected:** Red overlay appearing if the timeout is reached or movement is invalid.
 
-## ## Setup & Installation
+## Setup & Installation
 
 1. **Dependencies:** Ensure you have the MediaPipe libraries in your `/js` folder or update the imports to use a CDN:
 ```javascript
@@ -59,7 +59,7 @@ import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdel
 2. **Web Server:** Due to security restrictions with `getUserMedia` and ES Modules, you **must** run this via a local web server (e.g., Live Server in VS Code or `python -m http.server`).
 3. **Hardware:** A webcam and a browser supporting WebGL/WebAssembly are required.
 
-## ## Usage
+## Usage
 
 1. Grant camera permissions when prompted.
 2. Center your face in the frame.
