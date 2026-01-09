@@ -166,4 +166,4 @@ import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdel
 ```
 ### The Mediapipe 468 mesh Indexes. Just zoom in the image to get the needed index:
 
- ![MP mesh indexes](https://github.com/sachadee/MediaPipe.js-Face-Mesh-and-3D-rendering/tree/SachaDee/canonical_face_model_uv_visualization.png) 
+ ![MP mesh indexes](canonical_face_model_uv_visualization.png) 
