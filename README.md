@@ -74,3 +74,94 @@ import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdel
 4. The top canvas displays the mesh and 3D cube, while the bottom canvas displays the isolated "Masked" face.
 
 ---
+
+
+## The  `LivenessDetector` Class Main functions:
+
+### The main Constant
+```
+  constructor({
+      blinkThreshold = 0.18,
+      nodThreshold = 15,
+      timeout = 8000,
+      cooldown = 1000,
+    } = {}) {
+    this.blinkThreshold = blinkThreshold;
+    this.nodThreshold = nodThreshold;
+    this.cooldown = cooldown;
+    this.timeout = timeout;
+
+    this.lastBlinkTime = 0;
+    this.lastNodTime = 0;
+    this.livenessConfirmed = false;
+    this.noddedDown = false;
+    this.sessionStart = null;
+    this.rejected = false;
+  }
+
+```
+
+### The headpose extraction
+
+```
+  computeHeadPose(landmarks) {
+    const xAxis = this._normalizeVector(this._vectorBetween(landmarks[263], landmarks[33]));
+    const yAxis = this._normalizeVector(this._vectorBetween(landmarks[10], landmarks[152]));
+    const zAxis = this._normalizeVector(this._crossProduct(xAxis, yAxis));
+
+    const R = [
+      [xAxis.x, yAxis.x, zAxis.x],
+      [xAxis.y, yAxis.y, zAxis.y],
+      [xAxis.z, yAxis.z, zAxis.z]
+    ];
+
+    const yaw = Math.atan2(R[1][0], R[0][0]) * 180 / Math.PI;
+    const pitch = Math.atan2(-R[2][0], Math.sqrt(R[2][1] ** 2 + R[2][2] ** 2)) * 180 / Math.PI;
+    const roll = Math.atan2(R[2][1], R[2][2]) * 180 / Math.PI;
+
+    return { yaw, pitch, roll };
+  }
+
+```
+
+//Get the Eye landmarks values:
+
+  getEAR(eye) {
+    const dy = (a, b) => Math.hypot(eye[a].x - eye[b].x, eye[a].y - eye[b].y);
+    const dx = (a, b) => Math.hypot(eye[a].x - eye[b].x, eye[a].y - eye[b].y);
+
+    const vertical = (dy(1, 5) + dy(2, 4)) / 2;
+    const horizontal = dx(0, 3);
+
+    return vertical / horizontal;
+  }
+
+// ====== Blink Detection ======
+
+  const leftEye = [landmarks[33], landmarks[159], landmarks[158], landmarks[133], landmarks[153], landmarks[145]];
+  const rightEye = [landmarks[362], landmarks[386], landmarks[385], landmarks[263], landmarks[380], landmarks[374]];
+  const leftEAR = this.getEAR(leftEye);
+  const rightEAR = this.getEAR(rightEye);
+  const avgEAR = (leftEAR + rightEAR) / 2;
+
+  const blink = avgEAR < this.blinkThreshold && now - this.lastBlinkTime > this.cooldown;
+  if (blink) {
+    this.lastBlinkTime = now;
+    console.log("👁️ Blink detected");
+  }
+
+// ====== Nod Detection ======
+
+  let nod = false;
+  if (pitch < -this.nodThreshold && !this.noddedDown) {
+    this.noddedDown = true;
+  }
+
+  if (pitch > 5 && this.noddedDown && now - this.lastNodTime > this.cooldown) {
+    nod = true;
+    this.noddedDown = false;
+    this.lastNodTime = now;
+    console.log("🙆 Nod detected");
+  }
+
+```
