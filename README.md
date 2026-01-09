@@ -165,3 +165,6 @@ import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdel
   }
 
 ```
+The Mediapipe 468 mesh Indexes just zoom in the image to get the needed index:
+
+[]() 
