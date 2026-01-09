@@ -1,13 +1,12 @@
 # MediaPipe.js-Face-Mesh-and-3D-rendering
-This project implements a sophisticated real-time facial analysis tool using MediaPipe Face Landmarker. It features 2D face masking (extracting the face from the video), 3D head pose estimation (visualized via a 3D cube), and a liveness detection system (tracking blinks and nods).
+This project implements a sophisticated real-time facial analysis tool using [MediaPipe](https://chuoling.github.io/mediapipe/) Face Landmarker. It features 2D face masking (extracting the face from the video), 3D head pose estimation (visualized via a 3D cube), and a liveness detection system (tracking blinks and nods).
 
 This code demonstrates a real-time web application that utilizes **MediaPipe Face Landmarker** to track facial features, perform liveness detection, and render both a 2D masked face and a 3D head-orientation cube.
 
-In this repo we will use the eye Blink to detect liveness. In the video above i did it with head movement.
+In this repo we will use the eyes Blink EAR (Eye Aspect Ratio) to detect liveness. In the video above i did it with head movement.
 In case of use a movement detection you have to catch the phone movement API to avoid the user to just move the phone to get the right pose.
 
-Device Orientation API: This API provides data about the physical orientation of the device in 3D space. It measures the rotation around the z, x, and y axes (alpha, beta, and gamma values, respectively), which can be used for things like compass functionality or updating a 3D scene view based on how the user holds their phone. See the [MDN Web Docs on detecting device orientation](https://developer.mozilla.org/en-US/docs/Web/API/Device_orientation_events/Detecting_device_orientation) for more information
-
+The Device Orientation API API provides data about the physical orientation of the device in 3D space. It measures the rotation around the z, x, and y axes (alpha, beta, and gamma values, respectively), which can be used for things like compass functionality or updating a 3D scene view based on how the user holds their phone. See the [MDN Web Docs on detecting device orientation](https://developer.mozilla.org/en-US/docs/Web/API/Device_orientation_events/Detecting_device_orientation) for more information
 
 
 https://github.com/user-attachments/assets/ba629879-0dce-4e3d-b6d8-c2829516a2d0
