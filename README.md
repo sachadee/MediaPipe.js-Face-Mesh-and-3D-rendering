@@ -3,6 +3,10 @@ This project implements a sophisticated real-time facial analysis tool using Med
 
 This code demonstrates a real-time web application that utilizes **MediaPipe Face Landmarker** to track facial features, perform liveness detection, and render both a 2D masked face and a 3D head-orientation cube.
 
+In this repo we will use the eye Blink to detect liveness. In the video above i did it with head movement.
+In case of use a movement detection you have to catch the phone movement API to avoid the user to just move the phone to get the right pose.
+
+Device Orientation API: This API provides data about the physical orientation of the device in 3D space. It measures the rotation around the z, x, and y axes (alpha, beta, and gamma values, respectively), which can be used for things like compass functionality or updating a 3D scene view based on how the user holds their phone. See the [MDN Web Docs on detecting device orientation](https://developer.mozilla.org/en-US/docs/Web/API/Device_orientation_events/Detecting_device_orientation) for more information
 
 
 
