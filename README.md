@@ -122,7 +122,6 @@ import { FaceLandmarker, FilesetResolver, DrawingUtils } from 'https://cdn.jsdel
     return { yaw, pitch, roll };
   }
 
-```
 
 //Get the Eye landmarks values:
 
