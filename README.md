@@ -3,6 +3,8 @@ This project implements a sophisticated real-time facial analysis tool using [Me
 
 This code demonstrates a real-time web application that utilizes **MediaPipe Face Landmarker** to track facial features, perform liveness detection, and render both a 2D masked face and a 3D head-orientation cube.
 
+ ![MP mesh indexes](mp.JPG) 
+
 In this repo we will use the eyes Blink EAR (Eye Aspect Ratio) to detect liveness. In the video above i did it with head movement.
 In case of use a movement detection you have to catch the phone movement API to avoid the user to just move the phone to get the right pose.
 
